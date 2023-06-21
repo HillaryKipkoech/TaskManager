@@ -19,7 +19,7 @@ const form = useForm({
             <form @submit.prevent="form.post(route('tasks.store'), { onSuccess: () => form.reset() })">
                 <textarea
                     v-model="form.task_name"
-                    placeholder="What's on your mind?"
+                    placeholder="Add a new Task"
                     class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                 ></textarea>
                 <InputError :task_name="form.errors.task_name" class="mt-2" />

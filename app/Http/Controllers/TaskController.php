@@ -24,7 +24,8 @@ class TaskController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+
+     public function create()
     {
         //
     }
@@ -62,16 +63,29 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Task $task)
+
+    public function update(Request $request, Task $task): RedirectResponse
     {
-        //
+        $this->authorize('update', $task);
+ 
+        $validated = $request->validate([
+            'tasks_name' => 'required|string|max:255',
+        ]);
+ 
+        $task->update($validated);
+ 
+        return redirect(route('tasks.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Task $task)
+    public function destroy(Task $task):RedirectResponse
     {
-        //
+        $this->authorize('delete', $task);
+ 
+        $task->delete();
+ 
+        return redirect(route('tasks.index'));
     }
 }

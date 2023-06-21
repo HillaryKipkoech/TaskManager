@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
 
 // Task resourceful routes
 Route::resource('tasks', TaskController::class)
-    ->only(['index', 'store'])
+    ->only(['index', 'store', 'update','destroy'])
     ->middleware(['auth', 'verified']);
 
 require __DIR__.'/auth.php';
